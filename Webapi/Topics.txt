@@ -1,0 +1,22 @@
+- Introduction 
+	- what is webapi?
+	- applications of webapi in realworld?
+	
+- Steps for creating .net core webapi project
+- Walkthrough folders and files
+- Difference b/w api and api endpoint?
+- Walkthrough ApiController and Action methods
+- Endpoint structure
+	- request
+	- response
+- What is HttpGet, HttpPost, HttpPut and HttpDelete?
+- What is StatusCodes?
+- Creating simple Get endpoints 	
+	-endpoint with no parameter
+	-endpoint with query strings
+	-endpoint with parameter in url
+- Testing endpoint in Post-Man
+	- Installation 
+	- How to call an endpoint from postman?
+	
+- Creating CRUD Operation endpoints.
