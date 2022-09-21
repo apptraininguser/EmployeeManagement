@@ -12,7 +12,7 @@ namespace WebapiDemo.Repository
 
         public EmployeeRepository()
         {
-            _sqlConnection = new SqlConnection("data source= (localdb)\\mssqllocaldb; database= Training2022Dbfgg;");
+            _sqlConnection = new SqlConnection("data source= (localdb)\\mssqllocaldb; database= Training2022Db;");
         }
 
         public IEnumerable<Employee> GetAllEmployee()
