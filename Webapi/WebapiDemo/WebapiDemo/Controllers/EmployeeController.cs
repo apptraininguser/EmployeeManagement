@@ -28,7 +28,44 @@ namespace WebapiDemo.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
-           
+        }
+
+        //https://localhost:44333/api/employees/2
+        [HttpGet]
+        [Route("employees/{id}")]
+        public IActionResult GetById([FromRoute] int id)
+        {
+            try
+            {
+                var employeeRepository = new EmployeeRepository();
+
+                var employee = employeeRepository.GetEmployeeById(id);
+
+                return Ok(employee);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
+        //https://localhost:44333/api/employees
+        [HttpPost]
+        [Route("employees")]
+        public IActionResult PostEmployee([FromBody] Employee employee)
+        {
+            try
+            {
+                var employeeRepository = new EmployeeRepository();
+
+                var result = employeeRepository.InsertEmployee(employee);
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
         }
     }
 }
