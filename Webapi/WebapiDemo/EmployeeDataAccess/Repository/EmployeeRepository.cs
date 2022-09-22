@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebapiDemo.Repository
+namespace EmployeeDataAccess.Repository
 {
     public class EmployeeRepository
     {
@@ -40,10 +40,6 @@ namespace WebapiDemo.Repository
                 }
                 return listOfEmployee;
             }
-            catch (Exception ex)
-            {
-                throw;
-            }
             finally
             {
                 _sqlConnection.Close();
@@ -61,10 +57,12 @@ namespace WebapiDemo.Repository
 
                 var sqlDataReader = sqlCommand.ExecuteReader();
 
-                var employee = new Employee();
+                Employee employee = null;
 
                 while (sqlDataReader.Read())
                 {
+                    employee = new Employee();
+
                     employee.Id = (int)sqlDataReader["Id"];
                     employee.Name = (string)sqlDataReader["Name"];
                     employee.Age = (int)sqlDataReader["Age"];
@@ -72,11 +70,6 @@ namespace WebapiDemo.Repository
                 }
 
                 return employee;
-            }
-            catch (Exception)
-            {
-
-                throw;
             }
             finally
             {
@@ -100,10 +93,51 @@ namespace WebapiDemo.Repository
                 sqlCommand.ExecuteNonQuery();
                 return true;
             }
+            finally
+            {
+                _sqlConnection.Close();
+            }
+        }
+
+        public bool UpdateEmployee(Employee employee)
+        {
+            try
+            {
+                _sqlConnection.Open();
+
+                var sqlCommand = new SqlCommand(cmdText: "Update Employee set Name = @name, Age = @age, Salary = @salary, ModificationDate = @modification where Id = @id", _sqlConnection);
+
+                sqlCommand.Parameters.AddWithValue("id", employee.Id);
+                sqlCommand.Parameters.AddWithValue("name", employee.Name);
+                sqlCommand.Parameters.AddWithValue("age", employee.Age);
+                sqlCommand.Parameters.AddWithValue("salary", employee.Salary);
+                sqlCommand.Parameters.AddWithValue("modification", DateTime.Now);
+
+                sqlCommand.ExecuteNonQuery();
+                return true;
+            }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 throw;
+            }
+            finally
+            {
+                _sqlConnection.Close();
+            }
+        }
+
+        public bool DeleteEmployee(int employeeId)
+        {
+            try
+            {
+                _sqlConnection.Open();
+
+                var sqlCommand = new SqlCommand(cmdText: "delete from Employee where Id = @id", _sqlConnection);
+                sqlCommand.Parameters.AddWithValue("id", employeeId);
+
+                sqlCommand.ExecuteNonQuery();
+                return true;
             }
             finally
             {

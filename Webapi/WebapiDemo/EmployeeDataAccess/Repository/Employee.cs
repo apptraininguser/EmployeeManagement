@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebapiDemo.Repository
+namespace EmployeeDataAccess.Repository
 {
     public class Employee
     {
