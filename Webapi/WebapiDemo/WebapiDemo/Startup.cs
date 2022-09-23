@@ -1,3 +1,4 @@
+using EmployeeDataAccess.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,6 +26,10 @@ namespace WebapiDemo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connectionString = Configuration.GetValue<string>("ConnectionStrings:EmployeeDbConnectionString");
+
+            services.AddScoped<IEmployeeRepository, EmployeeRepositoryV2>(sp => new EmployeeRepositoryV2(connectionString));
+
             services.AddControllers();
         }
 

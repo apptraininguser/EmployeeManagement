@@ -9,6 +9,14 @@ namespace WebapiDemo.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
+        private readonly IEmployeeRepository _employeeRepository;
+
+        //IEmployeeRepository1
+        public EmployeeController(IEmployeeRepository employeeRepository)
+        {
+            _employeeRepository = employeeRepository;
+        }
+
         //GetAllEmployee()
         //api/employees
         [HttpGet]
@@ -17,8 +25,7 @@ namespace WebapiDemo.Controllers
         {
             try
             {
-                var employeeRepository = new EmployeeRepository();
-                var employees = employeeRepository.GetAllEmployee();
+                var employees = _employeeRepository.GetAllEmployee();
                 return Ok(employees);
             }
             catch (Exception ex)
@@ -36,9 +43,7 @@ namespace WebapiDemo.Controllers
             {
                 ValidateEmployee(id);
 
-                var employeeRepository = new EmployeeRepository();
-
-                var employee = employeeRepository.GetEmployeeById(id);
+                var employee = _employeeRepository.GetEmployeeById(id);
 
                 ValidateEmployee(employee);
 
@@ -65,9 +70,7 @@ namespace WebapiDemo.Controllers
         {
             try
             {
-                var employeeRepository = new EmployeeRepository();
-
-                var result = employeeRepository.InsertEmployee(employee);
+                var result = _employeeRepository.InsertEmployee(employee);
 
                 return Ok(result);
             }
@@ -84,8 +87,7 @@ namespace WebapiDemo.Controllers
         {
             try
             {
-                var employeeRepository = new EmployeeRepository();
-                var result = employeeRepository.UpdateEmployee(employee);
+                var result = _employeeRepository.UpdateEmployee(employee);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -102,13 +104,11 @@ namespace WebapiDemo.Controllers
             {
                 ValidateEmployee(id);
 
-                var employeeRepository = new EmployeeRepository();
-
-                var employee = employeeRepository.GetEmployeeById(id);
+                var employee = _employeeRepository.GetEmployeeById(id);
 
                 ValidateEmployee(employee);
 
-                var result = employeeRepository.DeleteEmployee(id);
+                var result = _employeeRepository.DeleteEmployee(id);
                 return Ok(result);
             }
             catch (ArgumentNullException ex)
@@ -135,7 +135,7 @@ namespace WebapiDemo.Controllers
 
         private void ValidateEmployee(Employee employee)
         {
-            if(employee == null)
+            if (employee == null)
             {
                 throw new ArgumentNullException("employee is not found");
             }

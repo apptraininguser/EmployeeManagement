@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace EmployeeDataAccess.Repository
 {
-    public class EmployeeRepository
+    public class EmployeeRepositoryV2 : IEmployeeRepository
     {
         private SqlConnection _sqlConnection;
 
-        public EmployeeRepository()
+        public EmployeeRepositoryV2(string connectionString)
         {
-            _sqlConnection = new SqlConnection("data source= (localdb)\\mssqllocaldb; database= Training2022Db;");
+            _sqlConnection = new SqlConnection(connectionString);
         }
 
         public IEnumerable<Employee> GetAllEmployee()

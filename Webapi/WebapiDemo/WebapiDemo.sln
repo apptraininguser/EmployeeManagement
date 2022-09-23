@@ -5,7 +5,11 @@ VisualStudioVersion = 16.0.32802.440
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebapiDemo", "WebapiDemo\WebapiDemo.csproj", "{6C393CC9-1AF0-4562-9E16-D8A84AA2745E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeDataAccess", "EmployeeDataAccess\EmployeeDataAccess.csproj", "{8237D6DA-F358-4C1D-AE4E-BB110A97BC88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeDataAccess", "EmployeeDataAccess\EmployeeDataAccess.csproj", "{8237D6DA-F358-4C1D-AE4E-BB110A97BC88}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-Presentation", "01-Presentation", "{486B5ADC-0A70-4309-B5F9-EAFC4034D7A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02-DataAccess", "02-DataAccess", "{762E892C-F3F5-4B38-92C1-787EFC72DE11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +28,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6C393CC9-1AF0-4562-9E16-D8A84AA2745E} = {486B5ADC-0A70-4309-B5F9-EAFC4034D7A0}
+		{8237D6DA-F358-4C1D-AE4E-BB110A97BC88} = {762E892C-F3F5-4B38-92C1-787EFC72DE11}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C77F821B-ED28-46C0-BF6D-E0441FB772B8}
